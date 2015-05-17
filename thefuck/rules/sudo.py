@@ -7,12 +7,17 @@ patterns = ['permission denied',
             'root privilege',
             'This command has to be run under the root user.',
             'This operation requires root.',
-            'You need to be root to perform this command.']
+            'You need to be root to perform this command.',
+            'requested operation requires superuser privilege',
+            'must be run as root',
+            'must be superuser',
+            'Need to be root']
 
 
 def match(command, settings):
     for pattern in patterns:
-        if pattern.lower() in command.stderr.lower():
+        if pattern.lower() in command.stderr.lower()\
+                or pattern.lower() in command.stdout.lower():
             return True
     return False
 

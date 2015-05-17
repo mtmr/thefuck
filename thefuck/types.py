@@ -4,11 +4,12 @@ from collections import namedtuple
 Command = namedtuple('Command', ('script', 'stdout', 'stderr'))
 
 Rule = namedtuple('Rule', ('name', 'match', 'get_new_command',
-                           'enabled_by_default'))
+                           'enabled_by_default', 'side_effect',
+                           'priority'))
 
 
 class RulesNamesList(list):
-    """Wrapper a top of list for string rules names."""
+    """Wrapper a top of list for storing rules names."""
 
     def __contains__(self, item):
         return super(RulesNamesList, self).__contains__(item.name)
